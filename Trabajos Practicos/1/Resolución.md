@@ -6,19 +6,19 @@ Para obtener el código fuente de Xinu, ejecuta:
 ```bash  
   
 wget http://se.fi.uncoma.edu.ar/so/misc/xinu-pc.tar.gz  
-📦 Desempaquetado
+
 ```  
 ``` bash  
 
 tar xvf xinu-pc.tar.gz  
-🛠️ Compilación
+
 ```
 ``` bash
 
 cd xinu-pc/compile/  
 make clean  
 make  
-▶️ Ejecución en QEMU
+
 ```  
 ``` bash 
   
@@ -95,13 +95,15 @@ shellcmd hello(int nargs, char *args[]) {
     return 0;  
 }
 ```
+
 Registro en el Shell
 
 include/shprototypes.h: Agrega la declaración del prototipo:
 
 ``` c
    
-shellcmd hello(int nargs, char *args[]);  
+shellcmd hello(int nargs, char *args[]);
+```
 shell/cmdtab.c: Añade la entrada correspondiente:  
   
 ```c
@@ -110,7 +112,7 @@ shell/cmdtab.c: Añade la entrada correspondiente:
 ``` 
 Compilación y Verificación  
 
-Compila Xinu y, en el shell, ejecuta hello para verificar que funciona correctamente.
+Compila Xinu y, en el shell, ejecuta hello para verificar que funciona .
 
 ### Pregunta
 
@@ -120,7 +122,7 @@ En Xinu, las funciones del shell deben seguir el formato shellcmd nombre_funcion
 ## Visualización de Procesos 📊👀
 Para ver los procesos en ejecución, usa el comando ps (Process Status). Este muestra una lista de todos los procesos activos, incluyendo sus IDs, estados, prioridades y más detalles.
 
-### 🔹 Ejemplo de salida:
+### 🔹 Ejemplo:
 
 ``` Pid Name             State Prio Ppid Stack Base Stack Ptr  Stack Size
 --- ---------------- ----- ---- ---- ---------- ---------- ----------
@@ -130,3 +132,29 @@ Para ver los procesos en ejecución, usa el comando ps (Process Status). Este mu
   4 shell            recv    50    3 0x005F7FFC 0x005F7C7C     8192
  11 ps               curr    20    4 0x005F5FFC 0x005F5FC4     8192
 ```
+### 🔍 Explicación:
+1. PID (Process ID): Identificador único del proceso.
+
+ - 0 (prnull): Proceso especial (nulo/inactivo).
+- 1 (rdsproc): Proceso relacionado con disco remoto (suspendido).
+- 3 (Main process): Proceso principal (en estado recv, esperando mensajes).
+- 4 (shell): ¡El shell de Xinu! (también en recv).
+ - 11 (ps): Proceso actual (el que se ejecutó).
+2. Estados (State):
+
+- ready : Listo para ejecutarse.
+- susp : Suspendido (ejemplo: rdsproc).
+- recv : Esperando recibir un mensaje (como el Main process y el shell).
+- curr : En ejecución actual (ps).
+3. Prioridad (Prio):
+
+- Mayor número = Mayor prioridad (ejemplo: rdsproc tiene 200).
+4. PPID (Parent PID):
+
+- El shell (PID 4) fue creado por el Main process (PID 3).
+- El comando ps (PID 11) fue lanzado desde el shell (PID 4).
+5. Stack (Pila):
+
+- Direcciones de memoria y tamaño asignado a cada proceso.
+
+  
