@@ -98,13 +98,13 @@ shellcmd hello(int nargs, char *args[]) {
 
 Registro en el Shell
 
-include/shprototypes.h: Agrega la declaración del prototipo:
+include/`shprototypes.h`: Agrega la declaración del prototipo:
 
 ``` c
    
-shellcmd hello(int nargs, char *args[]);
+ extern shellcmd hello(int32, char *[]);
 ```
-shell/cmdtab.c: Añade la entrada correspondiente:  
+shell/`cmdtab.c`: Añade la entrada correspondiente:  
   
 ```c
   
