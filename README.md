@@ -1,13 +1,13 @@
 # 📚 Sistemas Operativos I
 
-🗂️ Contenidos Principales
-🔹 1. Introducción a los Sistemas Operativos
-¿Qué es un sistema operativo?
+# 🗂️ Contenidos Principales
+  🔹 1. Introducción a los Sistemas Operativos
+  ¿Qué es un sistema operativo?
 
-Funciones, estructura, evolución histórica 🕰️
+  Funciones, estructura, evolución histórica 🕰️
 
-🔹 2. Gestión de Procesos 👤
-Concepto de proceso y PCB (Process Control Block)
+  🔹 2. Gestión de Procesos 👤
+  Concepto de proceso y PCB (Process Control Block)
 
 Estados del proceso 🔄
 
