@@ -147,4 +147,4 @@ system("/bin/stty raw");   // Modo raw en terminal
 system("/bin/stty sane");  // Restaura terminal
 ```
 b) Código básico del juego
-[Ir al código del juego del ahorcado](src/ahorcado.c)
+[Ir al código del juego del ahorcado](TrabajosPractos/0/ahorcadito.c)
