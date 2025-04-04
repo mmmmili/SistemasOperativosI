@@ -43,10 +43,25 @@
 
 - Lectura, escritura, permisos y seguridad 🔐
 
--Estructuras internas del sistema de archivos
+- Estructuras internas del sistema de archivos
 
-### 🔹 7. Virtualización 🧳
 - Máquinas virtuales 💻 dentro de 💻
 
 - Tipos de virtualización y usos actuales
+
+  
+
+  ## 📂 ¿Qué vas a aprender haciendo?
+ ✔️ Comprender el funcionamiento real del sistema operativo
+✔️ Escribir código a bajo nivel 🧑‍💻
+✔️ Ejecutar procesos, gestionar recursos y experimentar con OS como XINU o Linux
+✔️ Usar herramientas como fork(), exec(), wait() y gestionar procesos reales
+✔️ Prepararte para materias avanzadas o incluso para sistemas embebidos y virtualización 🧬
+
+## 🔗 Más info
+📎 Página oficial de la materia: http://se.fi.uncoma.edu.ar/so/
+🧑‍🏫 Facultad de Informática - UNComa
+📍 Sede: Neuquén, Argentina
+
+### 🔹 7. Virtualización 🧳
 
