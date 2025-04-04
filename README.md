@@ -49,7 +49,7 @@
 
 - Tipos de virtualización y usos actuales
 
-  
+  ### 🔹 7. Virtualización 🧳
 
   ## 📂 ¿Qué vas a aprender haciendo?
  ✔️ Comprender el funcionamiento real del sistema operativo
@@ -60,8 +60,10 @@
 
 ## 🔗 Más info
 📎 Página oficial de la materia: http://se.fi.uncoma.edu.ar/so/
+
 🧑‍🏫 Facultad de Informática - UNComa
+
 📍 Sede: Neuquén, Argentina
 
-### 🔹 7. Virtualización 🧳
+
 
