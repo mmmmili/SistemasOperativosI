@@ -1,5 +1,18 @@
 # 📚 Sistemas Operativos I
 
+## 📅 Fechas de Parciales y Coloquios
+
+### ✏️ **Parciales**
+- 📝 **Primer Parcial**: 11 de abril
+- 🔁 **Recuperatorio Primer Parcial**: 25 de abril
+- 📝 **Segundo Parcial**: 6 de junio
+- 🔁 **Recuperatorio Segundo Parcial**: 27 de junio
+
+### 🎓 **Coloquios**
+- 📚 **Primer Coloquio**: 25 de abril
+- 📚 **Segundo Coloquio**: 27 de junio
+
+
 ## 🗂️ Contenidos Principales
   ### 🔹 1. Introducción a los Sistemas Operativos
    - ¿Qué es un sistema operativo?
