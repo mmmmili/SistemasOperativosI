@@ -20,11 +20,12 @@ Test-and-Set es una instrucción atómica que permite implementar exclusión mut
 
  ## 📜
  ### Explique por qué es importante POSIX. Justifique con un ejemplo.
- POSIX estandariza la interfaz entre aplicaciones y sistemas operativos tipo Unix.
+POSIX (Portable Operating System Interface) es un estándar que define una interfaz común para sistemas operativos compatibles con UNIX. Permite que el mismo código fuente pueda ser compilado y ejecutado en diferentes plataformas.
 
--  Facilita la portabilidad de programas.
+Ejemplo:
+Un programa en C que use llamadas estándar como fork(), exec(), open() o pthread_create() va a funcionar tanto en Linux, macOS como en FreeBSD si siguen POSIX.
 
-- Ej: fork(), open(), pthread_create() funcionan en Linux, macOS, BSD, etc.
+💡 Esto facilita el porting de aplicaciones y el desarrollo multiplataforma.
 
 
  
