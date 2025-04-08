@@ -73,3 +73,56 @@ void hijo(){
 
 ### b) 
 
+
+```
+#include <xinu.h>
+
+void hijo(void);
+
+void primos(void){
+    int primo = create(hijo, 8192, 20, "process 1", 0);
+    int prioriHijo = getprio(primo);
+    int priorPadre = getprio(primos);
+    
+    chprio(getpid(), 30);
+    resume( primo);
+
+    for (int i = 2; i < 10; i++) {
+            int esPrimo = 1;
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    esPrimo = 0;
+                    break;
+                }
+            }
+            if (esPrimo) {
+                kprintf("Padre: %d\n", i);
+            }
+    }
+
+    sleep(3);
+    kill(primo);
+    kprintf("hijomatado");
+    exit();
+	
+}
+
+
+void hijo(){
+    
+    for (int i = 10; i < 20; i++) {
+            int esPrimo = 1;
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    esPrimo = 0;
+                    break;
+                }
+            }
+            if (esPrimo) {
+                kprintf("Hijo: %d\n", i);
+            }
+        }
+}
+```
+
+## Ejercicio 3
