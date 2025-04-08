@@ -53,18 +53,22 @@ Existen diversos algoritmos para determinar el orden de ejecución de los proces
 
  ## 📊 Planificacion por Prioridades
  🔹 Descripción:    
-    Cada proceso tiene un prioridad. El CPU siempre se asigna al proceso con mayor prioridad.
-    - Apropiativo: un proceso con mayor prioridad puede interrumpir al actual.
-    - No apropiativo: el proceso actual continúa hasta terminar  
+    Cada proceso tiene un prioridad. El CPU siempre se asigna al proceso con       mayor prioridad.
+  - Apropiativo: un proceso con mayor prioridad puede interrumpir al actual.
+  - No apropiativo: el proceso actual continúa hasta terminar
+    
 🔹 Ventajas:  
-    - Permite dar tratamiento especial a procesos críticos.  
+   - Permite dar tratamiento especial a procesos críticos.
+     
 🔹 Desventajas:   
-    - Puede causar inanición a procesos de baja prioridad.  
-    - Inversión de prioridad: si un proceso bajo prioridad bloquea uno de alta, puede frenar el sistema.  
-🔹 Dónde se usa:  
-    - Sistemas de tiempo real, embebidos  
+  - Puede causar inanición a procesos de baja prioridad.  
+  - Inversión de prioridad: si un proceso bajo prioridad bloquea uno de alta, puede frenar el sistema.
+    
+🔹 Dónde se usa:
+   - Sistemas de tiempo real, embebidos
+       
 🔹 Solución a la inanición:   
-    - Aging: la prioridad de un proceso aumenta con el tiempo de espera.  
+  - Aging: la prioridad de un proceso aumenta con el tiempo de espera.  
 
 
   ## 🧪 Colas Multinivel 
@@ -101,7 +105,17 @@ Existen diversos algoritmos para determinar el orden de ejecución de los proces
   - Sistemas como UNIX, WINDOWS, LINUX modernos lo implementan.  
 
     
+##  📊 Comparativa
 
+
+| Algoritmo              | Apropiativo | Justo | Tiempo de Respuesta | Facilidad de Implementación | Comentarios |
+|------------------------|-------------|-------|----------------------|------------------------------|-------------|
+| **FCFS**               | ❌          | ✅    |  Malo              | ✅ Fácil                     | Efecto convoy |
+| **SJF**                | ❌ / ✅     | ❌    |  Excelente         | ❌ Difícil estimar duración  | Puede causar inanición |
+| **Round Robin (RR)**   | ✅          | ✅    |  Bueno             | ✅ Fácil                     | Depende del quantum |
+| **Prioridades**        | ✅ / ❌     | ❌    |  Muy bueno         | ✅ Medio                     | Puede haber inversión de prioridad |
+| **Multilevel Queue**   | ✅ / ❌     | ❌    |  Variable          | ❌ Complejo                  | Buena separación de tipos de procesos |
+| **Feedback Queue**     | ✅          | ✅    |  Excelente         | ❌ Muy complejo              | Se adapta dinámicamente |
 
 
 
