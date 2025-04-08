@@ -2,7 +2,7 @@
 La planificacion es el mecanismo que utiliza el sistema operativo para decidir que proceso o hilo obtiene acceso al procesador y por cuanto tiempo. 
 ## ⚖️ Algoritmos de Planificación
 Existen diversos algoritmos para determinar el orden de ejecución de los procesos:
-## 🗓️  FIRST-COME, FIRST-SERVED (FCFS)
+## 🗓️  First-Come, First-Served (FCFS)
   Los procesos se ejecutan en el orden que llegan a la cola de listos.  No se interrumpe un proceso una vez que comienza su ejecución (no apropiativo).
   🔹 Ejemplo: Supongamos 3 procesos:  
   - P1 llega en tiempo 0 y dura 5
@@ -20,7 +20,7 @@ Existen diversos algoritmos para determinar el orden de ejecución de los proces
 🔹 Dónde se usa:
   - Procesamiento por lotes (batch)
 
-  ## 🧠  SJF - SHORTEST JOB FIRST
+  ## 🧠  SJF - Shortest Job First
   🔹 Descripción: 
   Se selecciona el proceso con el menor tiempo estimado de ejecucion. Puede ser:
   - No apropiativo: una vez que se asigna, no se interrumpe
