@@ -100,7 +100,7 @@ void primos(void){
             }
     }
 
-    sleep(3);
+    sleep(NULL);
     kill(primo);
     kprintf("hijomatado");
     exit();
