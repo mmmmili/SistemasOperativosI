@@ -157,6 +157,6 @@ Z: Zombificado, un proceso difunto que aun no ha sido reclamado por el proceso p
 Segun tanenbaum, un proceso zombie es un proceso que termino pero su proceso padre aun no lo llamo "wait()". Todos los procesos transicionan a este estado cuando terminan pero generalmente existen como zombies muy poco tiempo.
 
 
-## Ejercicio 3
+
 
 
