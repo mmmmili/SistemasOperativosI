@@ -20,7 +20,6 @@ No se puede hacer suspend(pid) a un proceso en estado sleeping, solo se puede ha
 
 ### b) ¿cuánto vale el quantum en XINU?. ¿Que problema o comportamiento puede haber si usted cambia el quantum a 100ms?
 El QUANTUM en XINU es de 2 ms, si lo cambiaramos a 100 ms el sistema tiempo compartido se pierde ya que esta ilusion de que todos los programas estan ejecutandose en paralelo no sucederia. ej: el que toma la cpu es el relok, no se podria utilizar ningun otro programa hasta que el reloj no termine su quantum y devuelva la cpu
-### c) Investigue cómo se llaman y cómo funcionan los algoritmos de planificación de procesos del sistema operativo Windows y Linux.  
 
 ### c) Investigue cómo se llaman y cómo funcionan los algoritmos de planificación de procesos del sistema operativo Windows y Linux. Redacte una respuesta-aprendizaje. Esto implica: no buscar en google/chatgpt y sólo copiar y pegar. Intente dar una explicación general.
 La planificacion en UNIX emplea colas multinivel usando Round Robin en cada una. La prioridad se ajusta dinamicamente para implementar "envejecimiento" cuando el proceso espera, para evitar la inanicion.
