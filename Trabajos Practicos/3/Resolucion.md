@@ -89,21 +89,83 @@ Debo implementar estas 3 funciones.
 - void mutex_unlock(sid32 sem);
 
 ```
+mut.c
+
 #include <xinu.h>
 
-void mutex_init(sid32 sem)
+sid32 sem;
+int32 pActual;
+
+void mutex_init()
 {
   sem = semcreate(1);
 }
 
-void mutex_lock(sid32 sem)
+void mutex_lock()
 {
   wait(sem);
+  pActual = getPid();
 }
 
-void mutex_unlock(sid32 sem)
+int mutex_unlock()
 {
-  signal(sem);
+  int resultado ;
+  int32 pLlamador = getPid();
+  if(pActual == pLlamador){
+    signal(sem);
+    resultado = 1;
+    pActual = 0;
+  }else{
+    resultado = -1;
+  }
+  return resultado;
 }
 
+```
+
+### c. 
+```
+
+#include <xinu.h>
+#include <mut.h>
+
+void operar(void), incrementar(void);
+unsigned char x = 0;
+
+
+void mut(void)
+{
+    mutex_init(); 
+
+    resume( create(operar, 1024, 20, "process 1", 0) );
+    resume( create(incrementar, 1024, 20, "process 2", 0) );
+    sleep(10); // dejar que corran por un rato
+}
+
+
+void operar(void)
+{
+    int y = 0;
+    printf("Si no existen mensajes de ERROR entonces todo va OK! \n");
+
+    while (1) {
+        mutex_lock();
+        if ((x % 10) == 0) {
+            y = x * 2;
+            if ((y % 10) != 0)
+                printf("\r ERROR!! y=%d, x=%d \r", y, x);
+        }
+        mutex_unlock();
+    }
+}
+
+
+void incrementar(void)
+{
+    while (1) {
+        mutex_lock();
+        x = x + 1;
+        mutex_unlock();
+    }
+}
 ```
