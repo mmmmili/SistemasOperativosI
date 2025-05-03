@@ -59,5 +59,51 @@ void consume(void)
 }
 ```
 
+## Ejercicio 2
+### a.
+Hay dos procesos concurrentes:
 
+- `incrementar()`: incrementa x continuamente.
 
+- `operar()`: cuando x es múltiplo de 10, calcula y = x * 2 y verifica si y también es múltiplo de 10.
+  
+❌ Problema:
+No hay sincronización entre incrementar() y operar(). Esto significa:
+
+- incrementar() puede modificar x mientras operar() la está leyendo.
+
+- Entonces x podría cambiar entre las dos líneas:
+   ```
+   y = x * 2;
+   if ((y % 10) != 0) 
+  ```  
+Y por eso, aunque x era múltiplo de 10 al inicio, ya no lo es cuando se usa en el cálculo, generando valores erróneos de y.  
+
+### b.
+
+Xinu no tiene mutex nativo, pero sí tiene semáforos, que podemos usar para construir uno.
+Debo implementar estas 3 funciones.
+
+- void mutex_init(sid32 sem);
+- void mutex_lock(sid32 sem);
+- void mutex_unlock(sid32 sem);
+
+```
+#include <xinu.h>
+
+void mutex_init(sid32 sem)
+{
+  sem = semcreate(1);
+}
+
+void mutex_lock(sid32 sem)
+{
+  wait(sem);
+}
+
+void mutex_unlock(sid32 sem)
+{
+  signal(sem);
+}
+
+```
