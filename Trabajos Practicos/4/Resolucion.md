@@ -29,3 +29,17 @@ Tamaño total del archivo:
 Total = 4.194.304 KB + 49.152 = 4GB
 
 ## Ejercicio 3
+### a.
+1. Leer el Boot Sector que contiene informacion basica sobre el sistema de archivos como: el tipo de fat,el numero de sectores reservados, ubicacion de la fat
+   ubicacion del directorio raiz.
+2. Acceder al directorio raiz que se comporta como un directorio normal
+3. Buscar la entrada fotos en el directorio raiz. El sistema lee secuencialmente las entradas del directorio raiz. Cada entrada tiene nombre, atributos, hora/fecha, y numero del primer cluster. Si encuentra una entrada con nombre `fotos`, verifica que sea un subdirectorio.
+4. Acceder al contenido del subdirectorio `fotos`. Usando el numero de cluster inicial, accede al area de datos. Lee la fat para encontrar todoso los clusters que pertenecen al subdirectorio fotos. En esa area busca la entrada `barilo`
+5. Acceder al subdirectorio `barilo`. Nuevamente usa el numero de cluster inicial para barilo para acceder a sus contenidos.
+6. Buscar el archivo `plaza.jpg` y si la encuentra se obtiene el numero de cluster inicial y el tamaño del archivo, el archivo existe y puede abrirse.
+7. Si no se encuentra el archivo en cualquiera de los pasos, el sistema retorna error
+### b. 
+
+
+
+
