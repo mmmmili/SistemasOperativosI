@@ -57,10 +57,56 @@ Coincide aproximadamente la cantidad de memoria virtual utilizada que la que se 
   
 ## Ejercicio 2
 ### a. 
-El tiempo de ejecucion de la version 2 es de 2,26s
-El tiempo de ejecucion de la version 3 es de 4,15s
+El tiempo de ejecucion de la version 1 es de 21,01s
+El tiempo de ejecucion de la version 2 es de 5,22s
+El tiempo de ejecucion de la version 3 es de 8,55s
+
+### b.
+Version 1: 
+Performance counter stats for './ej1':
+
+       995.670.045      dTLB-store-misses                                          
+     1.008.933.732      cache-misses                                                
+
+      21,008444547 seconds time elapsed
+
+      20,657441000 seconds user
+       0,327642000 seconds sys
+Version 2: 
+Performance counter stats for './v2':
+
+         1.602.284      dTLB-store-misses                                          
+        16.324.885      cache-misses                                                
+
+       5,216423308 seconds time elapsed
+
+       4,919403000 seconds user
+       0,291727000 seconds sys
+
+Version 3: 
+Performance counter stats for './v3':
+
+       260.845.787      dTLB-store-misses                                          
+       270.903.691      cache-misses                                                
+
+       8,554540110 seconds time elapsed
+
+       8,251713000 seconds user
+       0,287711000 seconds sys
+
+  ### 📊 Resumen de rendimiento (perf)
+
+| Versión   | `dTLB-store-misses`     | `cache-misses`        | Tiempo total (s) |
+|-----------|--------------------------|------------------------|------------------|
+| Versión 1 | 995.670.045              | 1.008.933.732          | 21,01            |
+| Versión 2 | 1.602.284                | 16.324.885             | 5,22             |
+| Versión 3 | 260.845.787              | 270.903.691            | 8,55             |
 
 
+🔹 La TLB (Translation Locaside Buffer) es una cache que se encuentra dentro de la MMU (Memory Managment Unit) y que almacena traducciones recientes de direcciones virtuales a direcciones físicas. Contiene parte de la tabla de paginas del proceso que se esta ejecutando. Se utiliza para acelerar el proceso de traducción de direcciones de memoria en sistemas con memoria virtual, si la TLB tiene la pagina q se necesita se produce un hit sino es un fallo.
+🔹  La Cache de Datos es una memoria rapida que se encuentra dentro del procesador y que almacena datos frecuentemente usados. Contiene datos que el procesador accede frecuenemente, suele estar dividida en varios niveles. Y se utiliza para reducir el tiempo de acceso a los datos que estan en RAM.
+
+### 1. 
 
 ## Ejercicio 3.
 
