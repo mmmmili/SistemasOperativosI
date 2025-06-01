@@ -106,7 +106,20 @@ Performance counter stats for './v3':
 🔹 La TLB (Translation Locaside Buffer) es una cache que se encuentra dentro de la MMU (Memory Managment Unit) y que almacena traducciones recientes de direcciones virtuales a direcciones físicas. Contiene parte de la tabla de paginas del proceso que se esta ejecutando. Se utiliza para acelerar el proceso de traducción de direcciones de memoria en sistemas con memoria virtual, si la TLB tiene la pagina q se necesita se produce un hit sino es un fallo.
 🔹  La Cache de Datos es una memoria rapida que se encuentra dentro del procesador y que almacena datos frecuentemente usados. Contiene datos que el procesador accede frecuenemente, suele estar dividida en varios niveles. Y se utiliza para reducir el tiempo de acceso a los datos que estan en RAM.
 
-### 1. 
+### 1. Version con peor rendimiento
+La versión 1  tiene el peor rendimiento con 21,01 segundos. Es la que tiene mayor fallos de TLB y de Cache de datos, esto se debe a que su recorrido se realiza por columnas, primero avanza en j y dsp en i. cada cambio en i implica saltar una pagina. Este patron de acceso rompe la localidad espacial y fuerza el uso de usar muchas paginas diferentes, por lo que aumenta los fallos de tlb y reduce la efectividad de la cache, esto genera un mal rendimiento.
+
+### 2. 
+La version 2 tiene el mejor rendimiento con 5,22 segundos. Esta version recorre la memoria por filas, esto aprovecha la localidad espacial ya que se accede a datos contiguos y tambien reduce los fallos de TLB ya que cada pagina se utiliza completamente antes de pasar a la otra. Como su recorrido es eficiente en cuanto a fallos de cache y de TLB tiene un mejor rendimiento.
+
+### 3. 
+Versión 2 (mejor) accede por filas completas, lo que maximiza la localidad de caché y minimiza los fallos de la TLB.
+
+Versión 3 (rendimiento intermedio) accede por bloques verticales: accede a 4 columnas a la vez, luego salta, y repite.
+
+Como resultado la version 3 tiene menos cache misses que la version 1 pero aun asi accede de manera entrecortada a las paginas lo que genera mas fallos de cache que la version 2. 
+
+Conclusion: la forma de recorrer la memoria tiene impacto en el uso de la tlb y cache , mientras mas localizada y secuencial sea la lectura el programa tendra mejor rendimiento 
 
 ## Ejercicio 3.
 
