@@ -169,3 +169,16 @@ void incrementar(void)
     }
 }
 ```
+
+## Ejercicio 3.
+1. Crear o abrir con shm_open()
+
+2. Redimensionar con ftruncate()
+
+3. Mapear en memoria con mmap()
+
+4. Desmapear con munmap() y cerrar con close()
+
+5. (Opcional) Borrar con shm_unlink()
+
+
