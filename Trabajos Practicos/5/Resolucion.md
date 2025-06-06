@@ -123,6 +123,89 @@ Conclusion: la forma de recorrer la memoria tiene impacto en el uso de la tlb y 
 
 ## Ejercicio 3.
 
+## Direcciones virtuales en arquitectura AMD64 (x86-64) con páginas de 4KB
+
+En un sistema Linux actual que corre sobre procesadores Intel/AMD con arquitectura **AMD64**, se utiliza un esquema de **paginación jerárquica de 4 niveles** cuando el tamaño de página es de **4 KB**.
+
+### 🧠 Estructura de una dirección virtual (48 bits)
+
+Una dirección virtual de 48 bits se divide en campos que corresponden a los distintos niveles de la jerarquía de traducción:
+
+| Bits       | Nombre del nivel                      | Descripción                          |
+|------------|----------------------------------------|--------------------------------------|
+| 47 – 39    | **PML4** (Page Map Level 4)            | Índice en la tabla PML4              |
+| 38 – 30    | **PDPT** (Page Directory Pointer Table)| Índice en la tabla PDPT              |
+| 29 – 21    | **PD** (Page Directory)                | Índice en el directorio de páginas   |
+| 20 – 12    | **PT** (Page Table)                    | Índice en la tabla de páginas        |
+| 11 – 0     | **Offset** dentro de la página         | Desplazamiento dentro de la página   |
+
+Cada uno de estos niveles contiene **512 entradas**, ya que cada índice tiene 9 bits (2⁹ = 512).
+
+---
+
+### 📦 Tamaño de las tablas de páginas
+
+Todas las tablas involucradas en el proceso de traducción (PML4, PDPT, PD, PT) tienen las siguientes características:
+
+- **Cantidad de entradas:** 512
+- **Tamaño de cada entrada:** 8 bytes (64 bits)
+- **Tamaño total de cada tabla:** `512 × 8 = 4096 bytes = 4 KB`
+
+---
+
+### ✅ Nombres y tamaños según AMD Programmer's Manual
+
+| Nivel | Nombre (según AMD)              | Tamaño | Entradas |
+|-------|----------------------------------|--------|----------|
+| 1     | Page Table                       | 4 KB   | 512      |
+| 2     | Page Directory Table             | 4 KB   | 512      |
+| 3     | Page Directory Pointer Table     | 4 KB   | 512      |
+| 4     | Page Map Level 4 Table (PML4)    | 4 KB   | 512      |
+
+---
+
+> 📌 Nota: Aunque la arquitectura define direcciones de 64 bits, los sistemas actuales usan solo 48 bits efectivos. Los 16 bits superiores deben ser una extensión del bit 47 (extensión de signo), por lo que las direcciones virtuales válidas están en el rango de ±2⁴⁷.
+
+### ¿Cuántos bits realmente se utilizan de la dirección virtual?
+
+Actualmente, se utilizan **48 bits** de los 64 posibles. Esto permite direccionar hasta 256 TiB (2⁴⁸ bytes) de espacio de direcciones virtuales.
+
+### ¿Cuál es el tamaño máximo de memoria virtual que un proceso puede utilizar?
+
+El tamaño máximo es **2⁴⁸ bytes = 256 TiB** (teóricos), aunque en la práctica, los sistemas operativos limitan este valor. Por ejemplo, Linux puede reservar menos dependiendo de la configuración del kernel y de la arquitectura específica.
+
+---
+
+### ¿Cómo es posible que un proceso funcione si el tamaño de memoria virtual que utiliza es mayor que la memoria física?
+
+Gracias a la **memoria virtual** y al uso de mecanismos como:
+
+- **Paginación bajo demanda**: solo se cargan en memoria física las páginas que realmente se usan.
+- **Swapping**: páginas no utilizadas se almacenan temporalmente en disco.
+- **TLB y MMU**: permiten que el sistema operativo gestione dinámicamente la traducción entre direcciones virtuales y físicas.
+
+Esto permite que un proceso vea un espacio de memoria continuo mucho mayor que la memoria física disponible.
+
+---
+
+### Sea un proceso que utiliza un total de 128 MB de memoria en este sistema.  
+**¿Cuántas páginas necesita cargar el SO para que el proceso comience a ejecutarse?**
+
+Si el proceso usa 128 MB de memoria y cada página tiene 4 KB:
+
+\[
+\frac{128\ \text{MB}}{4\ \text{KB}} = \frac{128 \times 2^{20}}{4 \times 2^{10}} = 32,768\ \text{páginas}
+\]
+
+Sin embargo, **el sistema operativo no necesita cargar todas esas páginas al inicio**. Con **paginación bajo demanda**, solo necesita cargar:
+
+- Las **páginas que contienen el código inicial (por ejemplo, main)**.
+- Las estructuras necesarias para comenzar la ejecución (stack, heap mínimo, etc.).
+- Las tablas de páginas correspondientes.
+
+Esto puede significar que bastan con unas **decenas de páginas** reales cargadas inicialmente.
+
+
 La fragmentación es cuando:  
 Se asigna una unidad fija de memoria (una página, por ejemplo 4 KB), pero el proceso solo necesita una parte de ella.
 Ejemplo: si se asigna una página de 4 KB pero solo se usan 2 KB, los 2 KB restantes están desperdiciados.
